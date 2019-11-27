@@ -1,0 +1,39 @@
+div u {
+  background: lightblue;
+}
+
+div h1 {
+  color: lightcoral;
+  text-align: center;
+}
+
+#a2 {
+  color: #0d0080;
+  background-color: #69ffc6;
+}
+
+#a3 {
+  text-align: left;
+}
+
+#a4 {
+  color: red;
+}
+
+#a5 {
+  color: green;
+}
+
+.list {
+  text-align: center;
+  -webkit-padding-before: 20px;
+  padding-block-start: 20px;
+  margin: 70px;
+  background-color: #ebb487;
+}
+
+body {
+  margin: 0;
+  background-color: bisque;
+}
+/*# sourceMappingURL=style.css.map */
