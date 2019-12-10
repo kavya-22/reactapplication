@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-import ReactDOM from "react-dom";
+
 class Todo extends React.Component {
   constructor(props) {
     super(props);
@@ -49,19 +49,22 @@ class Todo extends React.Component {
       isEditing: true
     });
   }
+  componentWillMount() {
+    // load items array from localStorage, set in state
+    let itemsList = localStorage.getItem("list");
+    if (itemsList) {
+      this.setState({
+        list: JSON.parse(localStorage.getItem("list"))
+      });
+    }
+  }
+  componentDidUpdate() {
+    // on each update, sync our state with localStorage
+    localStorage.setItem("list", JSON.stringify(this.state.list));
+  }
   render() {
-    //  if(this.state.isEditing){
-    //     return <li>
-    //         <form onSubmit={this.edit}>
-    //             <input type="text" value={this.state.newitem} onChange={this.onChange} />
-    //             <button type="submit" onClick={this.additem} >save</button>
-    //             <button onClick={this.edit}>cancel</button>
-    //         </form>
-    //     </li>
-    // }
-    /*    <h1>ppushre</h1> */
     return (
-      <div className="list">
+      <div className="list" data-testid="add1">
         <table align="center">
           <tr>
             <th>
@@ -77,7 +80,7 @@ class Todo extends React.Component {
               <button
                 id="a2"
                 type="button"
-                class="btn btn-success"
+                className="btn btn-success"
                 disabled={!this.state.newitem}
                 onClick={() => {
                   this.additem();
@@ -96,7 +99,7 @@ class Todo extends React.Component {
                   &nbsp;
                   <button
                     id="a5"
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                     onClick={() => {
                       this.delete(item.id);
                     }}
@@ -106,12 +109,11 @@ class Todo extends React.Component {
                   &nbsp; &nbsp;
                   <button
                     id="a4"
-                    class="btn btn-success"
+                    className="btn btn-success"
                     onClick={() => {
                       this.edit(item.id);
                     }}
                   >
-                    {" "}
                     edit
                   </button>
                 </ul>
